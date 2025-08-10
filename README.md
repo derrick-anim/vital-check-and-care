@@ -1,1 +1,0 @@
-# Vital Checks and CareThis is a website that is used to manage the hospital
