@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+  <!-- Back Button -->
+  <a href="hompege.html" class="back-btn">&#8592; Back</a>
+
+  <div class="container">
+    <h1>Book Appointment</h1>
+    
+    <form>
+      <label for="specialty">Select Specialty</label>
+      <select id="specialty" name="specialty" required>
+        <option value="">-- Choose Specialty --</option>
+        <option value="cardiology">Cardiology</option>
+        <option value="neurology">Neurology</option>
+        <option value="pediatrics">Pediatrics</option>
+        <option value="orthopedics">Orthopedics</option>
+      </select>
+
+      <label for="doctor">Select Doctor</label>
+      <select id="doctor" name="doctor" required>
+        <option value="">-- Choose Doctor --</option>
+        <option value="dr-smith">Dr. Smith</option>
+        <option value="dr-johnson">Dr. Johnson</option>
+        <option value="dr-lee">Dr. Lee</option>
+      </select>
+
+      <label for="date">Choose Date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Choose Time</label>
+      <input type="time" id="time" name="time" required>
+
+      <label for="details">Additional Details</label>
+      <textarea id="details" name="details" placeholder="Enter any notes..." rows="3"></textarea>
+
+      <button type="submit" class="confirm-btn">Confirm Appointment</button>
+    </form>
+  </div>
+
+</body>
+</html>
