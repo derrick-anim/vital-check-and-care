@@ -1,105 +1,205 @@
- <!DOCTYPE html>
- <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>exam</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
-    </head>
-    <body>
-        <section class="sub-header">
-            <nav>
-                <a href="index.html"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
-                <div class="nav-links" id="navlinks">
-                    <i class="fa fa-times" onclick="hidemenu()"></i>
-                    <ul>
-                       <li><a href="index.html">HOME</a></li>
-                        <li><a href="services.html">SERVICES</a></li>
-                        <li><a href="bookinnngs.html">BOOKINGS</a></li>
-                        <li><a href="history.html">HISTORY</a></li>
-                        <li><a href="chat box.html">HELP CHAT</a></li>
+<?php
+session_start(); // Start the session
 
-                    </ul>
-                </div>
-                <i class="fa fa-bars" onclick="showmenu()"></i>
-            </nav>
-            <h1>Book All Appointments Here 👍👇</h1>
-        </section>
-        <!----ABOUT US CONTENT--->
-        <section>
-             <div class="container">
-        <h2>Appointment Booking Form</h2>
-        <form id="appointmentForm">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+// Simulate setting admin session (remove or change in real usage)
+if (!isset($_SESSION['admin'])) {
+    $_SESSION['admin'] = false; // Set to true to simulate admin
+}
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $file = "bookings.json"; // JSON file path
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    // New booking details from form
+    $newBooking = [
+        "name" => $_POST['name'],
+        "email" => $_POST['email'],
+        "phone" => $_POST['phone'],
+        "date" => $_POST['date'],
+        "time" => $_POST['time'],
+        "doctor" => $_POST['doctor'],
+        "reason" => $_POST['reason']
+    ];
 
-            <label for="date">Appointment Date</label>
-            <input type="date" id="date" name="date" required>
+    // Read existing data
+    if (file_exists($file)) {
+        $data = json_decode(file_get_contents($file), true);
+        if (!is_array($data)) {
+            $data = [];
+        }
+    } else {
+        $data = [];
+    }
 
-            <label for="time">Appointment Time</label>
-            <input type="time" id="time" name="time" required>
+    // Append new booking
+    $data[] = $newBooking;
 
-            <label for="doctor">Select Doctor</label>
-            <select id="doctor" name="doctor" required>
-                <option value="">-- Choose a doctor --</option>
-                <option value="Dr. John Smith - Cardiologist">Dr. John Smith - Cardiologist</option>
-                <option value="Dr. Lisa Green - Pediatrician">Dr. Lisa Green - Pediatrician</option>
-                <option value="Dr. Mark Brown - General Practitioner">Dr. Mark Brown - General Practitioner</option>
-            </select>
+    // Save back to file
+    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 
-            <label for="reason">Reason for Visit</label>
-            <textarea id="reason" name="reason" rows="4" placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+    // Confirmation message
+    echo "<p style='color:green;'>Booking saved successfully!</p>";
+}
 
-            <button type="submit">Book Appointment & Add to Calendar</button>
-        </form>
-    </div>
+// Load all bookings
+$file = "bookings.json";
+if (file_exists($file)) {
+    $bookings = json_decode(file_get_contents($file), true);
+    if (!is_array($bookings)) {
+        $bookings = [];
+    }
+} else {
+    $bookings = [];
+}
 
-        </section>
-       
-       
+$isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+?>
 
-        <!----FOOTER---->
-        <section class="FOOTER">
-            <h4>BOOK US NOW</h4>
-            <p>At VIITAL CHECKS & CARE, we are committed to providing high-quality, patient-centered healthcare through advanced medical technology and compassionate care. Our team of experienced doctors, nurses, and specialists work around the clock to ensure the best outcomes for every patient.<br>With state-of-the-art facilities and a focus on safety, comfort, and innovation, we strive to be a trusted name in health and healing.</p>
-            <div class="icons">
-                <img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
-                <img width="48" height="48" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/>
-                <img width="48" height="48" src="https://img.icons8.com/color/48/twitter--v1.png" alt="twitter--v1"/>
-                <img width="48" height="48" src="https://img.icons8.com/color/48/linkedin.png" alt="linkedin"/>
-            
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exam</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="tailwind.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            color: black;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.php"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
+            <div class="nav-links" id="navlinks">
+                <i class="fa fa-times" onclick="hidemenu()"></i>
+                <ul>
+                    <li><a href="index.php">HOME</a></li>
+                    <li><a href="services.php">SERVICES</a></li>
+                    <li><a href="bookings.php">BOOKINGS</a></li>
+                    <li><a href="history.php">HISTORY</a></li>
+                    <li><a href="chat box.php">HELP CHAT</a></li>
+                </ul>
             </div>
-            <p> &copy; 2025 Vitals Checks & Care. All Rights Reserved.</p>
-        </section>
+            <i class="fa fa-bars" onclick="showmenu()"></i>
+        </nav>
+        <h1>Book All Appointments Here 👍👇</h1>
+    </section>
+
+    <section>
+    <?php if ($isAdmin): ?>
+        <div class="contaner ">
+            <h2>List of Bookings</h2>
+            <?php if (empty($bookings)) : ?>
+                <p>No bookings found.</p>
+            <?php else : ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Doctor</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($bookings as $index => $booking) : ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= htmlspecialchars($booking['name']) ?></td>
+                                <td><?= htmlspecialchars($booking['email']) ?></td>
+                                <td><?= htmlspecialchars($booking['phone']) ?></td>
+                                <td><?= htmlspecialchars($booking['date']) ?></td>
+                                <td><?= htmlspecialchars($booking['time']) ?></td>
+                                <td><?= htmlspecialchars($booking['doctor']) ?></td>
+                                <td><?= htmlspecialchars($booking['reason']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <div class="container">
+            <h2>Appointment Booking Form</h2>
+            <form method="POST" action="">
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+
+                <label>Phone Number</label>
+                <input type="tel" name="phone" required>
+
+                <label>Appointment Date</label>
+                <input type="date" name="date" required>
+
+                <label>Appointment Time</label>
+                <input type="time" name="time" required>
+
+                <label>Select Doctor</label>
+                <select name="doctor" required>
+                    <option value="">-- Choose a doctor --</option>
+                    <option value="Dr. John Smith - Cardiologist">Dr. John Smith - Cardiologist</option>
+                    <option value="Dr. Lisa Green - Pediatrician">Dr. Lisa Green - Pediatrician</option>
+                    <option value="Dr. Mark Brown - General Practitioner">Dr. Mark Brown - General Practitioner</option>
+                </select>
+
+                <label>Reason for Visit</label>
+                <textarea name="reason" rows="4"></textarea>
+
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    <?php endif; ?>
+</section>
 
 
+    <section class="FOOTER">
+        <h4>BOOK US NOW</h4>
+        <p>At VIITAL CHECKS & CARE, we are committed to providing high-quality, patient-centered healthcare through advanced medical technology and compassionate care...</p>
+        <div class="icons flex justify-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
+            <img width="48" height="48" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/>
+            <img width="48" height="48" src="https://img.icons8.com/color/48/twitter--v1.png" alt="twitter--v1"/>
+            <img width="48" height="48" src="https://img.icons8.com/color/48/linkedin.png" alt="linkedin"/>
+        </div>
+        <p> &copy; 2025 Vitals Checks & Care. All Rights Reserved.</p>
+    </section>
 
-
-
-    <!--------Javascript for Toggle Menu------->
-<script>
-    var navlinks = document.getElementById("navlinks");
-    function showmenu(){
-        navlinks.style.right = "0";
-    }
-    function hidemenu(){
-        navlinks.style.right ="-200px";
-    }
-    
-</script>
-
-
-
-
-
-    </body>
- </html>
+    <script>
+        var navlinks = document.getElementById("navlinks");
+        function showmenu() {
+            navlinks.style.right = "0";
+        }
+        function hidemenu() {
+            navlinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>

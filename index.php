@@ -1,10 +1,21 @@
- <!DOCTYPE html>
+<?php
+session_start(); // Start the session
+
+// Simulate setting admin session (remove or change in real usage)
+if (!isset($_SESSION['admin'])) {
+    $_SESSION['admin'] = false; // Set to true to simulate admin
+}
+
+?>
+
+<!DOCTYPE html>
  <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>exam</title>
         <link rel="stylesheet" href="style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <script src="tailwind.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
@@ -12,17 +23,22 @@
     <body>
         <section class="header">
             <nav>
-                <a href="index.html"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
+                <a href="index.php"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
                 <div class="nav-links" id="navlinks">
-                    <i class="fa fa-times" onclick="hidemenu()"></i>
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="services.html">SERVICES</a></li>
-                        <li><a href="bookinnngs.html">BOOKINGS</a></li>
-                        <li><a href="BLOG.html">BLOG</a></li>
-                        <li><a href="about.html.html">ABOUT US</a></li>
-                        <li><a href="contacts.html">CONTACT</a></li>
-                        <li><a href="chat box.html">HELP CHAT</a></li>
+                    <i class="fa fa-times " onclick="hidemenu()"></i>
+                    <ul class="w-full ">
+                        <li><a href="index.php">HOME</a></li>
+                        <li><a href="services.php">SERVICES</a></li>
+                        <li><a href="bookinnngs.php">BOOKINGS</a></li>
+                        <li><a href="BLOG.php">BLOG</a></li>
+                        <li><a href="about.html.php">ABOUT US</a></li>
+                        <li><a href="contacts.php">CONTACT</a></li>
+                        <li><a href="chat box.php">HELP CHAT</a></li>
+                        <?php if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true): ?>
+                            <li><a class="bg-white/70 !rounded pe-8 !text-black !w-96" href="login.php">LOGIN</a></li>
+                        <?php else: ?>
+                            <li><a class="bg-white/70 !rounded pe-8 !text-black !w-96" href="logout.php">LOGOUT</a></li>
+                        <?php endif; ?>
 
                     </ul>
                 </div>
@@ -33,7 +49,7 @@
             <h1>VITAL CHECKS & CARE</h1>
             <P>Vital Checks and Care is a modern health facility dedicated to delivering timely, accurate, and compassionate medical services. Our mission is to prioritize your well-being through essential health monitoring and personalized care.<br>At Vital Checks and Care, we specialize in preventive health screenings, routine vital checks, and responsive medical attention—all designed to detect issues early and support long-term wellness. With a skilled team of professionals and a patient-centered approach, we ensure that every individual receives quality care in a safe, welcoming environment.
 Whether you’re here for a quick check-up or ongoing treatment, your health is our priority—because at Vital Checks and Care, every heartbeat matters.</P>
-        <a href="bookinnngs.html"class="hero-btn">VISIT US TO KNOW MORE</a>
+        <a href="bookinnngs.php"class="hero-btn">VISIT US TO KNOW MORE</a>
         </div>
 
         </section>
@@ -150,7 +166,7 @@ Whether you’re here for a quick check-up or ongoing treatment, your health is 
         <!----CALL---->
         <section class="cta">
             <h1>For appointments, inquiries, or emergency assistance, feel free to reach out anytime.<br>AnyWhere From The World</h1>
-            <a href="contacts.html"class="hero-btn">CONTACT US</a>
+            <a href="contacts.php"class="hero-btn">CONTACT US</a>
 
         </section>
 

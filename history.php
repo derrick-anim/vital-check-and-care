@@ -12,12 +12,12 @@
     <body>
         <section class="sub-header">
             <nav>
-                <a href="index.html"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
+                <a href="index.php"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
                 <div class="nav-links" id="navlinks">
                     <i class="fa fa-times" onclick="hidemenu()"></i>
                     <ul>
-                       <li><a href="bookinnngs.html">BOOKINGS</a></li>
-                        <li><a href="history.html">HISTORY</a></li>
+                       <li><a href="bookinnngs.php">BOOKINGS</a></li>
+                        <li><a href="history.php">HISTORY</a></li>
 
                     </ul>
                 </div>

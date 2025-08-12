@@ -12,17 +12,17 @@
     <body>
         <section class="sub-header">
             <nav>
-                <a href="index.html"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
+                <a href="index.php"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt=""></a>
                 <div class="nav-links" id="navlinks">
                     <i class="fa fa-times" onclick="hidemenu()"></i>
                     <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="services.html">SERVICES</a></li>
-                        <li><a href="bookinnngs.html">BOOKINGS</a></li>
-                        <li><a href="BLOG.html">BLOG</a></li>
-                        <li><a href="about.html.html">ABOUT US</a></li>
-                        <li><a href="contacts.html">CONTACT</a></li>
-                        <li><a href="chat box.html">HELP CHAT</a></li>
+                        <li><a href="index.php">HOME</a></li>
+                        <li><a href="services.php">SERVICES</a></li>
+                        <li><a href="bookinnngs.php">BOOKINGS</a></li>
+                        <li><a href="BLOG.php">BLOG</a></li>
+                        <li><a href="about.html.php">ABOUT US</a></li>
+                        <li><a href="contacts.php">CONTACT</a></li>
+                        <li><a href="chat box.php">HELP CHAT</a></li>
 
                     </ul>
                 </div>
