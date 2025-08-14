@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="tailwind.js"></script>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 10px; text-align: left; color: black; }
+        th { background-color: #f4f4f4; }
+        tr:nth-child(even) { background-color: #fafafa; }
+        input, select, textarea, button { display: block; margin: 10px 0; padding: 10px; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <section class="sub-header">
+        <nav>
+            <a href="#"><img src="CARDIOGRAM_LOGOHEALTH_LOGOCADIOLOGY_LOGO_-_Made_with_PosterMyWall-removebg-preview.png" alt="Logo"></a>
+            <div class="nav-links !mt-15" id="navlinks">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="bookinnngs.html">BOOKINGS</a></li>
+                    <li><a href="history.html">HISTORY</a></li>
+                    <li><a href="chatbox.html">HELP CHAT</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h1>Book All Appointments Here 👍👇</h1>
+    </section>
+
+    <section id="content"></section>
+
+    <section class="FOOTER">
+        <h4>BOOK US NOW</h4>
+        <p>At VIITAL CHECKS & CARE, we are committed to providing high-quality, patient-centered healthcare through advanced medical technology and compassionate care...</p>
+        <div class="icons flex justify-center">
+            <!-- Icons here -->
+            <div class="icons flex justify-center">
+                <img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
+                <img width="48" height="48" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/>
+                <img width="48" height="48" src="https://img.icons8.com/color/48/twitter--v1.png" alt="twitter--v1"/>
+                <img width="48" height="48" src="https://img.icons8.com/color/48/linkedin.png" alt="linkedin"/>
+            </div>
+        </div>
+        <p>&copy; 2025 Vitals Checks & Care. All Rights Reserved.</p>
+    </section>
+
+    <script>
+        // Simulated "admin" toggle. Change this to true or false to test.
+        const isAdmin = localStorage.getItem("admin") === "true";
+
+        // Mock data store (replace with actual fetch to backend or file in real usage)
+        let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+        const content = document.getElementById("content");
+
+        if (isAdmin) {
+            showAdminTable();
+        } else {
+            showBookingForm();
+        }
+
+        function showAdminTable() {
+            if (bookings.length === 0) {
+                content.innerHTML = "<p>No bookings found.</p>";
+                return;
+            }
+
+            const tableHTML = `
+                <div class="contaner">
+                    <h2>List of Bookings</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Doctor</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${bookings.map((booking, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${booking.name}</td>
+                                    <td>${booking.email}</td>
+                                    <td>${booking.phone}</td>
+                                    <td>${booking.date}</td>
+                                    <td>${booking.time}</td>
+                                    <td>${booking.doctor}</td>
+                                    <td>${booking.reason}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            content.innerHTML = tableHTML;
+        }
+
+        function showBookingForm() {
+            content.innerHTML = `
+                <div class="container">
+                    <h2>Appointment Booking Form</h2>
+                    <form id="bookingForm">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+
+                        <label>Appointment Date</label>
+                        <input type="date" name="date" required>
+
+                        <label>Appointment Time</label>
+                        <input type="time" name="time" required>
+
+                        <label>Select Doctor</label>
+                        <select name="doctor" required>
+                            <option value="">-- Choose a doctor --</option>
+                            <option value="Dr. John Smith - Cardiologist">Dr. John Smith - Cardiologist</option>
+                            <option value="Dr. Lisa Green - Pediatrician">Dr. Lisa Green - Pediatrician</option>
+                            <option value="Dr. Mark Brown - General Practitioner">Dr. Mark Brown - General Practitioner</option>
+                        </select>
+
+                        <label>Reason for Visit</label>
+                        <textarea name="reason" rows="4"></textarea>
+
+                        <button type="submit">Book Appointment</button>
+                        <p id="message" style="color: green;"></p>
+                    </form>
+                </div>
+            `;
+
+            document.getElementById("bookingForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const form = e.target;
+                const newBooking = {
+                    name: form.name.value,
+                    email: form.email.value,
+                    phone: form.phone.value,
+                    date: form.date.value,
+                    time: form.time.value,
+                    doctor: form.doctor.value,
+                    reason: form.reason.value
+                };
+
+                bookings.push(newBooking);
+                localStorage.setItem("bookings", JSON.stringify(bookings));
+                form.reset();
+
+                document.getElementById("message").textContent = "Booking saved successfully!";
+            });
+        }
+    </script>
+</body>
+</html>
