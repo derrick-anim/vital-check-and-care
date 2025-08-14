@@ -137,12 +137,14 @@ Whether you’re here for a quick check-up or ongoing treatment, your health is 
                     <div>
                         <p>The care I received was exceptional – from the modern facilities to the compassionate staff, everything exceeded my expectations.</p>
                         <h3>Christine Berkley</h3>
+                        <div class="flex w-full justify-center">
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
                         <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
                         <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
+                        <img width="30" hegitight="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
                         <img width="32" height="32" src="https://img.icons8.com/windows/32/star-half-empty.png" alt="star-half-empty"/>
-                       
+                       </div>
+                        
                     </div>
                 </div>
                  <div class="TESTIMONIALS-col">
@@ -150,12 +152,13 @@ Whether you’re here for a quick check-up or ongoing treatment, your health is 
                     <div>
                         <p>Clean rooms, advanced equipment, and a team that truly cares. I felt safe and well looked after throughout my stay</p>
                         <h3>Tom DuCchaine</h3>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
-                        <img width="32" height="32" src="https://img.icons8.com/windows/32/star-half-empty.png" alt="star-half-empty"/>
-                       
+                        <div class="flex w-full justify-center">
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-star.png" alt="filled-star"/>
+                            <img width="32" height="32" src="https://img.icons8.com/windows/32/star-half-empty.png" alt="star-half-empty"/>
+                       </div>
                     </div>
                 </div>
                 </div>
@@ -174,14 +177,14 @@ Whether you’re here for a quick check-up or ongoing treatment, your health is 
         <section class="FOOTER">
             <h4>ABOUT US</h4>
             <p>At VIITAL CHECKS & CARE, we are committed to providing high-quality, patient-centered healthcare through advanced medical technology and compassionate care. Our team of experienced doctors, nurses, and specialists work around the clock to ensure the best outcomes for every patient.<br>With state-of-the-art facilities and a focus on safety, comfort, and innovation, we strive to be a trusted name in health and healing.</p>
-            <div class="icons">
+            <div class="icons flex w-full justify-center ">
                 <img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
                 <img width="48" height="48" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/>
                 <img width="48" height="48" src="https://img.icons8.com/color/48/twitter--v1.png" alt="twitter--v1"/>
                 <img width="48" height="48" src="https://img.icons8.com/color/48/linkedin.png" alt="linkedin"/>
            
             </div>
-            <p> &copy; 2025 Vitals Checks & Care. All Rights Reserved.</p>
+            <p>&copy; 2025 Vitals Checks & Care. All Rights Reserved.</p>
         </section>
 
 
